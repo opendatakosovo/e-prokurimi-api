@@ -1,0 +1,96 @@
+Pie Chart
+
+
+db.procurements.aggregate([
+			{
+				$match:{
+						viti:2013
+						}
+			},
+			{
+				$group:{
+						_id:{
+							tipi:"$tipi"
+						},
+						shuma:{
+							$sum:"$kontrata.vlera"}
+						}
+			},
+			{
+				$sort:{ 
+					 	"_id.tipi":1
+						}
+			},
+			{
+				$project:{
+						tipi:"$_id.tipi",
+						shuma:"$shuma",
+						_id:0
+						}
+			}
+])
+
+
+db.procurements.aggregate([
+			{
+				$match:{
+						viti:2013
+						}
+			},
+			{
+				$group:{
+						_id:{
+							emri:"$kompania.emri",
+							tipi:"$tipi"
+						},
+						shuma:{
+							$sum:"$kontrata.vlera"}
+						}
+			},
+			{
+				$sort:{ 
+					 	"_id.tipi":1,
+						"_id.emri":1
+						}
+			},
+			{
+				$project:{
+						emri:"$_id.emri",
+						tipi:"$_id.tipi",
+						shuma:"$shuma",
+						_id:0
+						}
+			}
+])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
