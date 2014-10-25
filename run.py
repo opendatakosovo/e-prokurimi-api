@@ -16,10 +16,12 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
-    return "Per te shfaqur JSON Dokumentet per diagramet PieChart atehere ne URL duhet te ekzekutoni per PieChart: <br>" \
-           " http://127.0.0.1:5000/piechart/viti  Spjegim: Ne vend te vitit perdorni vitin per te cilin<br>"\
-           " deshironi te shfaqni JSON Dokumentin. Shembull http://127.0.0.1:5000/piechart/2013 <br>"\
-           "Ndersa per te shfaqur JSON Dokumentet per diagramet Treemap atehere ndjekni po te njejtet hapa si per PieChart<br> "\
+    return "<h3>Per te shfaqur JSON Dokumentet per diagramet PieChart atehere ne URL duhet te ekzekutoni per PieChart:</h3>" \
+           "http://127.0.0.1:5000/piechart/viti<br><br>" \
+           "<em>Spjegim:</em> Ne vend te vitit perdorni vitin per te cilin" \
+           " deshironi te shfaqni JSON Dokumentin.<br>" \
+           "<em>Shembull:</em> <a href='http://127.0.0.1:5000/piechart/2013' target='_blank'>http://127.0.0.1:5000/piechart/2013</a> <br>"\
+           "<h3>Ndersa per te shfaqur JSON Dokumentet per diagramet Treemap atehere ndjekni po te njejtet hapa si per PieChart</h3> "\
            " http://127.0.0.1:5000/treemap/viti"
 
 # permes app.route caktojme URL ne te cilen do te kthejme rezultatin qe na nevojitet, dhe permes <int:viti> kerkojme
