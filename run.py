@@ -2,6 +2,7 @@ from flask import Flask
 from flask import Response
 from bson import json_util, SON
 from pymongo import MongoClient
+import argparse
 
 # krijojme nje objekt te MongoClient(), klase e cila gjendet ne pymongo
 mongo = MongoClient()
@@ -333,5 +334,16 @@ def procurement_type(year):
     # ne momentin kur hapim  sh.: http://127.0.0.1:5000/piechart/2011 duhet te kthejme JSON, ne rastin tone resp.
     return resp
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+# Run the app
+if __name__ == '__main__':
+
+    # Define the arguments.
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--host', default='0.0.0.0', help='Host to bind to: [%(default)s].')
+    parser.add_argument('--port', type=int, default='5030', help='Port to listen to: [%(default)s].')
+    parser.add_argument('--debug', action='store_true', default=False, help='Debug mode: [%(default)s].')
+
+    # Parse arguemnts and run the app.
+    args = parser.parse_args()
+    app.run(debug=args.debug, host=args.host, port=args.port)
