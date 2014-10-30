@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import Response
-from bson import json_util
+from bson import json_util, SON
 from pymongo import MongoClient
 
 # krijojme nje objekt te MongoClient(), klase e cila gjendet ne pymongo
@@ -200,38 +200,45 @@ def company_details(name):
     return resp
 
 
-@app.route("/company-list")
+@app.route("/monthly-summary")
 def company_list():
     json = db.procurements.aggregate([
         {
             "$group": {
-                "_id": {
-                    "emri": "$kompania.emri",
-                    "tipi": "$tipi",
-                    "slug": "$kompania.slug",
-                    "selia": "$kompania.selia",
-                    "viti": "$viti"
+                '_id': {
+                    'viti': {
+                        '$year': "$dataNenshkrimit"
+                    },
+                    'muaji': {
+                        '$month': "$dataNenshkrimit"
+                    }
                 },
-                "shuma": {
+                "vlera": {
                     "$sum": "$kontrata.vlera"
+                },
+                "qmimi": {
+                    "$sum": "$kontrata.qmimi"
+                },
+                "count":{
+                    "$sum": 1
                 }
-            }
-        },
-        {
-            "$sort": {
-                "_id.tipi": 1,
-                "_id.kompania": 1
-            }
+            },
         },
         {
             "$project": {
-                "emri": "$_id.emri",
+                "muaji": "$_id.muaji",
                 "viti": "$_id.viti",
-                "tipi": "$_id.tipi",
-                "slug": "$_id.slug",
-                "shuma": "$shuma",
+                "vlera": "$vlera",
+                "qmimi": "$qmimi",
+                "count": "$count",
                 "_id": 0
             }
+        },
+        {
+            '$sort':
+                SON([
+                    ('viti', 1),
+                    ('muaji', 1)])
         }
     ])
     # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
