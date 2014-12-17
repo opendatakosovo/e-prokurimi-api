@@ -88,7 +88,7 @@ def treemap(komuna, viti):
         {
             "$match": {
                 "city":komuna,
-                "viti": 2013
+                "viti": viti
             }
         },
         {
@@ -142,7 +142,7 @@ def treemap_price(komuna, viti):
         {
             "$match": {
                 "city":komuna,
-                "viti": 2013
+                "viti": viti
             }
         },
         {
