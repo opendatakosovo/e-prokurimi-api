@@ -1,3 +1,6 @@
 Flask==0.10.1
 requests==1.2.3
 pymongo==2.6.2
+Flask-PyMongo==0.3.0
+Flask-Cache==0.13.1
+
