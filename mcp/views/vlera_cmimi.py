@@ -7,21 +7,25 @@ from pymongo import MongoClient
 import argparse
 
 
-class CompanyList(View):
-#@app.route("/<string:komuna>/monthly-summary")
-    def dispatch_request(self, komuna):
+class VleraCmimi(View):
+    def dispatch_request(self, komuna, viti):
+        ''' permes app.route caktojme URL ne te cilen do te kthejme rezultatin
+            qe na nevojitet, dhe permes <string:komuna> kerkojme nga databaza
+            te dhenat per komunen e caktuar dhe me <int:viti> kerkojme qe te 
+            caktojme vitin ne URL per te kerkuar nga databaza te dhenat 
+            perkatese te atij viti
+            Shembull : http://127.0.0.1:5000/komuna/monthly-summary/viti
+        '''
         json = mongo.db.procurements.aggregate([
             {
                 "$match": {
-                    "city":komuna
+                    "city": komuna,
+                    "viti": viti
                 }
             },
             {
                 "$group": {
                     '_id': {
-                        'viti': {
-                            '$year': "$dataNenshkrimit"
-                        },
                         'muaji': {
                             '$month': "$dataNenshkrimit"
                         }
@@ -31,27 +35,21 @@ class CompanyList(View):
                     },
                     "qmimi": {
                         "$sum": "$kontrata.qmimi"
-                    },
-                    "count":{
-                        "$sum": 1
                     }
                 },
             },
             {
                 "$project": {
                     "muaji": "$_id.muaji",
-                    "viti": "$_id.viti",
                     "vlera": "$vlera",
                     "qmimi": "$qmimi",
-                    "count": "$count",
                     "_id": 0
                 }
             },
             {
-                '$sort':
-                    SON([
-                        ('viti', 1),
-                        ('muaji', 1)])
+                '$sort':{
+                            'muaji': 1
+                        }
             }
         ])
         # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
@@ -59,5 +57,4 @@ class CompanyList(View):
             response=json_util.dumps(json['result']),
             mimetype='application/json')
 
-        # ne momentin kur hapim  sh.: http://127.0.0.1:5000/treemap duhet te kthejme JSON, ne rastin tone resp.
         return resp

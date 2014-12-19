@@ -7,7 +7,7 @@ from pymongo import MongoClient
 import argparse
 
 
-class Procurement_type(View):
+class ProcurementType(View):
 #@app.route("/<string:komuna>/procurement-type/<int:year>")
 	def dispatch_request(self, komuna, year):
 	    ''' ruajme rezultatin qe na kthehet nga databaza permes ekzekutimit

@@ -7,8 +7,7 @@ from pymongo import MongoClient
 import argparse
 
 
-
-class Budget_type(View):
+class BudgetType(View):
 #@app.route("/<string:komuna>/budget-type/<int:year>")
 	def dispatch_request(self, komuna, year):
 	    ''' Ruajme rezultatin qe na kthehet nga databaza permes ekzekutimit

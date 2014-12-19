@@ -115,12 +115,13 @@ def configure_logging(app):
 
 # Views for json responses
 from views.index import Index
-from views.budget import Budget_type
-from views.company import Company_details
-from views.company1 import Company_list
+from views.budget import BudgetType
+from views.company import CompanyDetails
+from views.company1 import CompanyList
 from views.pie import Piechart
-from views.procurement import Procurement_type
+from views.procurement import ProcurementType
 from views.tree import Treemap
+from views.vlera_cmimi import VleraCmimi
 
 
 
@@ -135,15 +136,15 @@ def register_url_rules(app):
 
 
 
-    cached_buget = app.cache.cached()(Budget_type.as_view('json_budget'))
+    cached_buget = app.cache.cached()(BudgetType.as_view('json_budget'))
     app.add_url_rule(
         '/<string:komuna>/budget-type/<int:year>', view_func=cached_buget)
 
-    cached_company = app.cache.cached()(Company_details.as_view('json_company'))
+    cached_company = app.cache.cached()(CompanyDetails.as_view('json_company'))
     app.add_url_rule(
         '/<string:komuna>/company/<string:name>', view_func=cached_company)
 
-    cached_company1 = app.cache.cached()(Company_list.as_view('json_company1'))
+    cached_company1 = app.cache.cached()(CompanyList.as_view('json_company1'))
     app.add_url_rule(
         '/<string:komuna>/monthly-summary', view_func=cached_company1)
 
@@ -155,6 +156,10 @@ def register_url_rules(app):
     app.add_url_rule(
         '/<string:komuna>/treemap/<int:viti>', view_func=cached_tree)
 
-    cached_procurement = app.cache.cached()(Procurement_type.as_view('json_procurement'))
+    cached_procurement = app.cache.cached()(ProcurementType.as_view('json_procurement'))
     app.add_url_rule(
         '/<string:komuna>/procurement-type/<int:year>', view_func=cached_procurement)
+
+    cached_vlera_cmimi = app.cache.cached()(VleraCmimi.as_view('json_vlera_cmimi'))
+    app.add_url_rule(
+        '/<string:komuna>/monthly-summary/<int:viti>', view_func=cached_vlera_cmimi)

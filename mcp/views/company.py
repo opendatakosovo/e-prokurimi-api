@@ -7,7 +7,7 @@ from pymongo import MongoClient
 import argparse
 
 
-class Company_details(View):
+class CompanyDetails(View):
 #@app.route("/<string:komuna>/company/<string:name>")
     def dispatch_request(self, komuna, name):
         json = mongo.db.procurements.find(
