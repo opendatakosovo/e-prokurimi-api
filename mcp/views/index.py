@@ -1,5 +1,5 @@
 from flask.views import View
-
+from flask import render_template
 class Index(View):
     def dispatch_request(self):
-        return "Welcome to Municipality Procurement API."
+        return render_template('index.html')
