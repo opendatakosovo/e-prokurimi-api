@@ -121,6 +121,7 @@ from views.company1 import CompanyList
 from views.pie import Piechart
 from views.procurement import ProcurementType
 from views.tree import Treemap
+from views.treemapprice import TreemapPrice
 from views.vlera_cmimi import VleraCmimi
 
 
@@ -155,6 +156,10 @@ def register_url_rules(app):
     cached_tree = app.cache.cached()(Treemap.as_view('json_tree'))
     app.add_url_rule(
         '/<string:komuna>/treemap/<int:viti>', view_func=cached_tree)
+
+    cached_tree_map_price = app.cache.cached()(Treemap.as_view('json_treemap_price'))
+    app.add_url_rule(
+        '/<string:komuna>/treemap/price/<int:viti>', view_func=cached_tree_map_price)
 
     cached_procurement = app.cache.cached()(ProcurementType.as_view('json_procurement'))
     app.add_url_rule(
