@@ -123,6 +123,7 @@ from views.procurement import ProcurementType
 from views.tree import Treemap
 from views.treemapprice import TreemapPrice
 from views.vlera_cmimi import VleraCmimi
+from views.municipalityPV import MunicipalityList
 
 
 
@@ -148,6 +149,10 @@ def register_url_rules(app):
     cached_company1 = app.cache.cached()(CompanyList.as_view('json_company1'))
     app.add_url_rule(
         '/<string:komuna>/monthly-summary', view_func=cached_company1)
+
+    cached_municipality = app.cache.cached()(MunicipalityList.as_view('json_municipality'))
+    app.add_url_rule(
+        '/monthly-summary/<int:viti>', view_func=cached_municipality)
 
     cached_pie = app.cache.cached()(Piechart.as_view('json_pie'))
     app.add_url_rule(
