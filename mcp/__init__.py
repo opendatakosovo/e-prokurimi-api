@@ -125,6 +125,7 @@ from views.treemapprice import TreemapPrice
 from views.vlera_cmimi import VleraCmimi
 from views.municipalityPV import MunicipalityList
 from views.company_names import CompanyNames
+from views.map import Map
 
 
 
@@ -163,6 +164,10 @@ def register_url_rules(app):
     cached_pie = app.cache.cached()(Piechart.as_view('json_pie'))
     app.add_url_rule(
         '/<string:komuna>/piechart/<int:viti>', view_func=cached_pie)
+
+    cached_map = app.cache.cached()(Map.as_view('json_map'))
+    app.add_url_rule(
+        '/<string:komuna>/map/<int:viti>', view_func=cached_map)
 
     cached_tree = app.cache.cached()(Treemap.as_view('json_tree'))
     app.add_url_rule(

@@ -1,10 +1,7 @@
-from flask import Flask
 from flask import Response
 from flask.views import View
-from bson import json_util, SON
+from bson import json_util
 from mcp import mongo
-from pymongo import MongoClient
-import argparse
 
 
 class VleraCmimi(View):
@@ -47,7 +44,7 @@ class VleraCmimi(View):
                 }
             },
             {
-                '$sort':{
+                '$sort': {
                     'muaji': 1
                 }
             }

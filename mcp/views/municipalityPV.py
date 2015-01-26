@@ -1,10 +1,7 @@
-from flask import Flask
 from flask import Response
 from flask.views import View
 from bson import json_util, SON
 from mcp import mongo
-from pymongo import MongoClient
-import argparse
 
 class MunicipalityList(View):
 #@app.route("/<string:komuna>/monthly-summary")
@@ -18,7 +15,7 @@ class MunicipalityList(View):
             {
                 "$group": {
                     '_id': {
-                    	'komuna': "$city",
+                        'komuna': "$city",
                         'muaji': {
                             '$month': "$dataNenshkrimit"
                         }

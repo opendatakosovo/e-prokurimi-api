@@ -1,10 +1,7 @@
-from flask import Flask
 from flask import Response
 from flask.views import View
-from bson import json_util, SON
+from bson import json_util
 from mcp import mongo
-from pymongo import MongoClient
-import argparse
 
 # krijojme funksionin treemap(viti) i cili pranon vitin nga <int:viti>
 class Treemap(View):
@@ -17,7 +14,7 @@ class Treemap(View):
         json = mongo.db.procurements.aggregate([
             {
                 "$match": {
-                    "city":komuna,
+                    "city": komuna,
                     "viti": viti
                 }
             },
