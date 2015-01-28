@@ -45,7 +45,7 @@ class Map(View):
                         "gjatesia": "$_id.gjatesi",
                         "qmimi": "$qmimi",
                         "vlera": "$vlera",
-                        "count": "$count",
+                        "numriKontratave": "$count",
                     }
                 }
             ])
