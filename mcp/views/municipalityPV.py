@@ -26,6 +26,9 @@ class MunicipalityList(View):
                     "qmimi": {
                         "$sum": "$kontrata.qmimi"
                     },
+                    "numriKontratave": {
+                        "$sum": 1
+                    }
                 },
             },
             {
@@ -35,6 +38,7 @@ class MunicipalityList(View):
                     "komuna": "$_id.komuna",
                     "vlera": "$vlera",
                     "qmimi": "$qmimi",
+                    "numriKontratave": "$numriKontratave",
                     "_id": 0
                 }
             },
