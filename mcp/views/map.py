@@ -40,13 +40,13 @@ class Map(View):
             },
             {
                 "$project": {
-                    "_id": 0,
                     "selia": "$_id.selia",
                     "gjeresia": "$_id.gjeresi",
                     "gjatesia": "$_id.gjatesi",
                     "cmimi": "$cmimi",
                     "vlera": "$vlera",
                     "numriKontratave": "$numriKontratave",
+                    "_id": 0
                 }
             }
         ])
