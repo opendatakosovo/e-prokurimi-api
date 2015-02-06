@@ -19,6 +19,7 @@ class Map(View):
                 "$group": {
                     "_id": {
                         "selia": "$kompania.selia.slug",
+                        "emri": "$kompania.selia.emri",
                         "gjeresi": "$kompania.selia.kordinatat.gjeresi",
                         "gjatesi": "$kompania.selia.kordinatat.gjatesi",
                     },
@@ -41,6 +42,7 @@ class Map(View):
             {
                 "$project": {
                     "selia": "$_id.selia",
+                    "emri": "$_id.emri",
                     "gjeresia": "$_id.gjeresi",
                     "gjatesia": "$_id.gjatesi",
                     "cmimi": "$cmimi",
