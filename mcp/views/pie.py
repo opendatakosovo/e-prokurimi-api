@@ -17,7 +17,7 @@ class Piechart(View):
         json = mongo.db.procurements.aggregate([
             {
                 "$match": {
-                    "city": komuna,
+                    "komuna.slug": komuna,
                     #bejme match ne baze te vitit te cilin e kemi marre nga URL, <int:viti>
                     "viti": viti
                 }

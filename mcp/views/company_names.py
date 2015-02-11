@@ -11,7 +11,7 @@ class CompanyNames(View):
             {
                 "$match": {
                     "viti": viti,
-                    "city": komuna
+                    "komuna.slug": komuna
                 }
             },
             {

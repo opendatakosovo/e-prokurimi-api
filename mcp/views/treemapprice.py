@@ -15,7 +15,7 @@ class TreemapPrice(View):
         json = mongo.db.procurements.aggregate([
             {
                 "$match": {
-                    "komuna": komuna,
+                    "komuna.slug": komuna,
                     "viti": viti
                 }
             },

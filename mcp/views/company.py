@@ -9,7 +9,7 @@ class CompanyDetails(View):
     def dispatch_request(self, komuna, name):
         json = mongo.db.procurements.find(
             {
-                "city": komuna,
+                "komuna.slug": komuna,
                 "kompania.slug": name
 
             }

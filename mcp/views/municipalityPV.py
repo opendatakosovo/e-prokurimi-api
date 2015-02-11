@@ -15,7 +15,7 @@ class MunicipalityList(View):
             {
                 "$group": {
                     '_id': {
-                        'komuna': "$city",
+                        'komuna': "$komuna.slug",
                         'muaji': {
                             '$month': "$dataNenshkrimit"
                         }

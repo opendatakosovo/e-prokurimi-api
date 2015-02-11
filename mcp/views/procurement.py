@@ -13,7 +13,7 @@ class ProcurementType(View):
         json = mongo.db.procurements.aggregate([
             {
                 "$match": {
-                    "city": komuna,
+                    "komuna.slug": komuna,
                     "viti": year
                 }
             },
