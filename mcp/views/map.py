@@ -56,7 +56,7 @@ class Map(View):
         json_min_max = mongo.db.procurements.aggregate([
             {
                 "$match": {
-                    "city": komuna,
+                    "komuna.slug": komuna,
                     "viti": viti,
                     "kompania.selia.slug": {'$ne': ''}
                 }
