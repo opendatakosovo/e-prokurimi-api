@@ -124,7 +124,7 @@ from views.tree import Treemap
 from views.treemapprice import TreemapPrice
 from views.vlera_cmimi import VleraCmimi
 from views.municipalityPV import MunicipalityList
-from views.company_names import CompanyNames
+from views.redflags import RedFlags
 from views.map import Map
 from views.company_directory import CompanyDirectory
 
@@ -158,9 +158,9 @@ def register_url_rules(app):
     app.add_url_rule(
         '/monthly-summary/<int:viti>', view_func=cached_municipality)
 
-    cached_company_names = app.cache.cached()(CompanyNames.as_view('json_company_names'))
+    cached_red_flags = app.cache.cached()(RedFlags.as_view('json_red_flags'))
     app.add_url_rule(
-        '/<string:komuna>/company-names/<int:viti>', view_func=cached_company_names)
+        '/<string:komuna>/red-flags/<int:viti>', view_func=cached_red_flags)
 
     cached_pie = app.cache.cached()(Piechart.as_view('json_pie'))
     app.add_url_rule(
@@ -169,6 +169,10 @@ def register_url_rules(app):
     cached_company_directory = app.cache.cached()(CompanyDirectory.as_view('json_company_directory'))
     app.add_url_rule(
         '/kompania/<string:kompania>', view_func=cached_company_directory)
+
+    cached_company_directory = app.cache.cached()(CompanyDirectory.as_view('json_all_company_directory'))
+    app.add_url_rule(
+        '/kompania', view_func=cached_company_directory)
 
     cached_map = app.cache.cached()(Map.as_view('json_map'))
     app.add_url_rule(

@@ -4,7 +4,7 @@ from bson import json_util
 from mcp import mongo
 
 
-class CompanyNames(View):
+class RedFlags(View):
 #@app.route("/<string:komuna>/monthly-summary")
     def dispatch_request(self, viti, komuna):
         json = mongo.db.procurements.aggregate([
