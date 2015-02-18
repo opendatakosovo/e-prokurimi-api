@@ -126,6 +126,7 @@ from views.vlera_cmimi import VleraCmimi
 from views.municipalityPV import MunicipalityList
 from views.company_names import CompanyNames
 from views.map import Map
+from views.company_directory import CompanyDirectory
 
 
 
@@ -164,6 +165,10 @@ def register_url_rules(app):
     cached_pie = app.cache.cached()(Piechart.as_view('json_pie'))
     app.add_url_rule(
         '/<string:komuna>/piechart/<int:viti>', view_func=cached_pie)
+
+    cached_company_directory = app.cache.cached()(CompanyDirectory.as_view('json_company_directory'))
+    app.add_url_rule(
+        '/kompania/<string:kompania>', view_func=cached_company_directory)
 
     cached_map = app.cache.cached()(Map.as_view('json_map'))
     app.add_url_rule(
