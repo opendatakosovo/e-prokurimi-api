@@ -27,13 +27,16 @@ class CompanyDirectory(View):
                     'kompania_slug': '$kompania.slug'
                 },
                 "emrat": {
-                    "$addToSet": "$kompania.emri" 
+                    "$addToSet": "$kompania.emri"
+                },
+                "adresa": {
+                    "$addToSet": "$kompania.selia.emri"
                 },
                 "saHereFitoiTenderin": {
                     "$sum": 1
                 },
                 "klientet": {
-                    "$addToSet": "$komuna.emri" 
+                    "$addToSet": "$komuna.emri"
                 },
                 "cmimi": {
                     "$sum": "$kontrata.qmimi"
@@ -59,6 +62,7 @@ class CompanyDirectory(View):
                 "_id": 0,
                 "slug": "$_id.kompania_slug",
                 "emrat": "$emrat",
+                "adresa": "$adresa",
                 "klientet": "$klientet",
                 "cmimi": "$cmimi",
                 "aneks": "$aneks",
