@@ -127,6 +127,7 @@ from views.municipalityPV import MunicipalityList
 from views.redflags import RedFlags
 from views.map import Map
 from views.company_directory import CompanyDirectory
+from views.company_details import CompanyDetails
 
 
 
@@ -161,6 +162,10 @@ def register_url_rules(app):
     cached_red_flags = app.cache.cached()(RedFlags.as_view('json_red_flags'))
     app.add_url_rule(
         '/<string:komuna>/red-flags/<int:viti>', view_func=cached_red_flags)
+
+    cached_company_details = app.cache.cached()(CompanyDetails.as_view('json_company_details'))
+    app.add_url_rule(
+        '/kompania-detajet/<string:kompania_slug>', view_func=cached_company_details)
 
     cached_pie = app.cache.cached()(Piechart.as_view('json_pie'))
     app.add_url_rule(
