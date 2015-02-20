@@ -141,11 +141,13 @@ def register_url_rules(app):
     cached_index = app.cache.cached()(Index.as_view('index'))
     app.add_url_rule('/', view_func=cached_index)
 
-
+    cached_buget_company = app.cache.cached()(BudgetType.as_view('json_budget_company'))
+    app.add_url_rule(
+        '/budget-type/<string:company_slug>', view_func=cached_buget_company)
 
     cached_buget = app.cache.cached()(BudgetType.as_view('json_budget'))
     app.add_url_rule(
-        '/<string:komuna>/budget-type/<int:year>', view_func=cached_buget)
+        '/budget-type/<string:komuna>/<int:year>', view_func=cached_buget)
 
     cached_company = app.cache.cached()(CompanyDetails.as_view('json_company'))
     app.add_url_rule(
@@ -193,7 +195,11 @@ def register_url_rules(app):
 
     cached_procurement = app.cache.cached()(ProcurementType.as_view('json_procurement'))
     app.add_url_rule(
-        '/<string:komuna>/procurement-type/<int:year>', view_func=cached_procurement)
+        '/procurement-type/<string:komuna>/<int:year>', view_func=cached_procurement)
+
+    cached_procurement_company = app.cache.cached()(ProcurementType.as_view('json_company_procurement'))
+    app.add_url_rule(
+        '/procurement-type/<string:company_slug>', view_func=cached_procurement_company)
 
     cached_vlera_cmimi = app.cache.cached()(VleraCmimi.as_view('json_vlera_cmimi'))
     app.add_url_rule(
