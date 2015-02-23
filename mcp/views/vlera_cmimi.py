@@ -5,22 +5,21 @@ from mcp import mongo
 
 
 class VleraCmimi(View):
-    def dispatch_request(self, komuna, viti):
-        ''' permes app.route caktojme URL ne te cilen do te kthejme rezultatin
-            qe na nevojitet, dhe permes <string:komuna> kerkojme nga databaza
-            te dhenat per komunen e caktuar dhe me <int:viti> kerkojme qe te 
-            caktojme vitin ne URL per te kerkuar nga databaza te dhenat 
-            perkatese te atij viti
-            Shembull : http://127.0.0.1:5000/komuna/monthly-summary/viti
-        '''
-        json = mongo.db.procurements.aggregate([
-            {
+    def dispatch_request(self, komuna=None, viti=None, company_slug=None):
+
+        aggegation = []
+
+        # If a commune or year is specified, create a match operation
+        if komuna != None and viti != None:
+            match = {
                 "$match": {
                     "komuna.slug": komuna,
                     "viti": viti
                 }
-            },
-            {
+            }
+            aggegation.append(match)
+
+            group = {
                 "$group": {
                     '_id': {
                         'muaji': {
@@ -33,22 +32,73 @@ class VleraCmimi(View):
                     "qmimi": {
                         "$sum": "$kontrata.qmimi"
                     }
-                },
-            },
-            {
+                }
+            }
+            aggegation.append(group)
+
+            project = {
                 "$project": {
                     "muaji": "$_id.muaji",
                     "vlera": "$vlera",
                     "qmimi": "$qmimi",
                     "_id": 0
                 }
-            },
-            {
+            }
+            aggegation.append(project)
+
+            sort = {
                 '$sort': {
                     'muaji': 1
                 }
             }
-        ])
+            aggegation.append(sort)
+
+        elif company_slug != None:
+            match = {
+                "$match": {
+                    "kompania.slug": company_slug,
+                }
+            }
+            aggegation.append(match)
+
+            group = {
+                "$group": {
+                    '_id': {
+                        'data': "$dataNenshkrimit"
+                    },
+                    "vlera": {
+                        "$sum": "$kontrata.vlera"
+                    },
+                    "qmimi": {
+                        "$sum": "$kontrata.qmimi"
+                    },
+                    "aneks": {
+                        "$sum": "$kontrata.qmimiAneks"
+                    }
+                }
+            }
+            aggegation.append(group)
+
+            project = {
+                "$project": {
+                    "data": "$_id.data",
+                    "vlera": "$vlera",
+                    "qmimi": "$qmimi",
+                    "aneks": "$aneks",
+                    "_id": 0
+                }
+            }
+            aggegation.append(project)
+
+            sort = {
+                '$sort': {
+                    'data': 1
+                }
+            }
+            aggegation.append(sort)
+
+        json = mongo.db.procurements.aggregate(aggegation)
+
         # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
         resp = Response(
             response=json_util.dumps(json['result']),

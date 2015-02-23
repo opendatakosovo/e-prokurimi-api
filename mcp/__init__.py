@@ -203,4 +203,8 @@ def register_url_rules(app):
 
     cached_vlera_cmimi = app.cache.cached()(VleraCmimi.as_view('json_vlera_cmimi'))
     app.add_url_rule(
-        '/<string:komuna>/monthly-summary/<int:viti>', view_func=cached_vlera_cmimi)
+        '/monthly-summary/<string:komuna>/<int:viti>', view_func=cached_vlera_cmimi)
+
+    cached_vlera_cmimi_company = app.cache.cached()(VleraCmimi.as_view('json_vlera_cmimi_company'))
+    app.add_url_rule(
+        '/monthly-summary/<string:company_slug>', view_func=cached_vlera_cmimi_company)
