@@ -2,14 +2,14 @@ from flask import Response
 from flask.views import View
 from bson import json_util
 from mcp import mongo
+import pymongo
 
 
 class CompanyDetails(View):
     def dispatch_request(self, kompania_slug):
 
-        #marrin te gjitha dokumentet per kompanine e caktuar
-        json = mongo.db.procurements.find({"kompania.slug": kompania_slug})
-        #pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
+        json = mongo.db.procurements.find({"kompania.slug": kompania_slug}).sort('dataNenshkrimit', pymongo.DESCENDING)
+
         resp = Response(
             response=json_util.dumps(json),
             mimetype='application/json')
