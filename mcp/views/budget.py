@@ -39,8 +39,15 @@ class BudgetType(View):
                     "_id": {
                         "tipi": "$tipiBugjetit"
                     },
-                    "shuma": {
-                        "$sum": "$kontrata.vlera"}
+                    "vlera": {
+                        "$sum": "$kontrata.vlera"
+                    },
+                    "cmimi": {
+                        "$sum": "$kontrata.qmimi"
+                    },
+                    "numriKontratave": {
+                        "$sum": 1
+                    }
                 }
             }
         aggegation.append(group)
@@ -58,7 +65,9 @@ class BudgetType(View):
         project = {
                 "$project": {
                     "tipi": "$_id.tipi",
-                    "shuma": "$shuma",
+                    "vlera": "$vlera",
+                    "cmimi": "$cmimi",
+                    "nrKontratave": "$numriKontratave",
                     "_id": 0
                 }
         }

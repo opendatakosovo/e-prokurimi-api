@@ -35,8 +35,14 @@ class ProcurementType(View):
                     "_id": {
                         "tipi": "$tipi"
                     },
-                    "shuma": {
+                    "vlera": {
                         "$sum": "$kontrata.vlera"
+                    },
+                    "cmimi": {
+                        "$sum": "$kontrata.qmimi"
+                    },
+                    "numriKontratave": {
+                        "$sum": 1
                     }
                 }
             }
@@ -55,7 +61,9 @@ class ProcurementType(View):
         project = {
                 "$project": {
                     "tipi": "$_id.tipi",
-                    "shuma": "$shuma",
+                    "vlera": "$vlera",
+                    "cmimi": "$cmimi",
+                    "nrKontratave": "$numriKontratave",
                     "_id": 0
                 }
         }
