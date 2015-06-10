@@ -18,6 +18,7 @@ class RedFlags(View):
                 "$group": {
                     '_id': {
                         'kompania_emri': '$kompania.emri',
+                        "selia": "$kompania.selia.emri",
                         "aktiviteti": "$aktiviteti",
                         'muaji': {
                             '$month': '$dataNenshkrimit'
@@ -44,6 +45,7 @@ class RedFlags(View):
                     "_id": 0,
                     "pershkrimi": "$_id.aktiviteti",
                     "kompania": "$_id.kompania_emri",
+                    "selia": "$_id.selia",
                     "vlera": "$vlera",
                     "qmimi": "$qmimi",
                     "qmimiAneks": "$qmimiAneks",
