@@ -161,9 +161,14 @@ def register_url_rules(app):
     app.add_url_rule(
         '/monthly-summary/<int:viti>', view_func=cached_municipality)
 
+
     cached_red_flags = app.cache.cached()(RedFlags.as_view('json_red_flags'))
     app.add_url_rule(
         '/<string:komuna>/red-flags/<int:viti>', view_func=cached_red_flags)
+
+    cached_red_flags_selia = app.cache.cached()(RedFlags.as_view('json_red_flags_selia'))
+    app.add_url_rule(
+        '/<string:komuna>/red-flags/<string:selia>/<int:viti>', view_func=cached_red_flags_selia)
 
     cached_company_details = app.cache.cached()(CompanyDetails.as_view('json_company_details'))
     app.add_url_rule(
