@@ -16,6 +16,7 @@ class MunicipalityList(View):
                 "$group": {
                     '_id': {
                         'komuna': "$komuna.slug",
+                        'komuna_emri': "$komuna.emri",
                         'muaji': {
                             '$month': "$dataNenshkrimit"
                         }
@@ -34,6 +35,7 @@ class MunicipalityList(View):
             {
                 "$project": {
                     "muaji": "$_id.muaji",
+                    "komuna_emri": "$_id.komuna_emri",
                     "viti": "$_id.viti",
                     "komuna": "$_id.komuna",
                     "vlera": "$vlera",
