@@ -22,6 +22,7 @@ class Treemap(View):
                 "$group": {
                     "_id": {
                         "kompania": "$kompania.slug",
+                        "kompania_emri": "$kompania.emri",
                         "tipi": "$tipi"
                     },
                     "shuma": {
@@ -41,6 +42,7 @@ class Treemap(View):
             {
                 "$project": {
                     "kompania": "$_id.kompania",
+                    "kompania_emri": "$_id.kompania_emri",
                     "tipi": "$_id.tipi",
                     "shuma": "$shuma",
                     "count": "$count",
