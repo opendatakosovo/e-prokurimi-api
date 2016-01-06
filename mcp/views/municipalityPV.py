@@ -6,7 +6,7 @@ from mcp import mongo
 class MunicipalityList(View):
 #@app.route("/<string:komuna>/monthly-summary")
     def dispatch_request(self, viti):
-        json = mongo.db.procurements.aggregate([
+        json1 = mongo.db.procurements.aggregate([
             {
                 "$match": {
                     "viti": viti
@@ -51,10 +51,9 @@ class MunicipalityList(View):
                         ('muaji', 1)])
             }
         ])
+        json = mongo.db.procurements.find_one()
         # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
-        resp = Response(
-            response=json_util.dumps(json['result']),
-            mimetype='application/json')
+        resp = Response(response=json_util.dumps(json),mimetype='application/json')
 
         # ne momentin kur hapim  sh.: http://127.0.0.1:5000/treemap duhet te kthejme JSON, ne rastin tone resp.
         return resp

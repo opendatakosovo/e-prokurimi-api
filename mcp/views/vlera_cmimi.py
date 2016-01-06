@@ -97,9 +97,11 @@ class VleraCmimi(View):
             }
             aggegation.append(sort)
 
+        print(aggegation)
         json = mongo.db.procurements.aggregate(aggegation)
 
-        # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
+
+        # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne resp
         resp = Response(
             response=json_util.dumps(json['result']),
             mimetype='application/json')
