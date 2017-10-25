@@ -6,7 +6,7 @@ from mcp import mongo
 class MunicipalityList(View):
 #@app.route("/<string:komuna>/monthly-summary")
     def dispatch_request(self, viti):
-        json1 = mongo.db.procurements.aggregate([
+        json = mongo.db.procurements.aggregate([
             {
                 "$match": {
                     "viti": viti
@@ -51,7 +51,7 @@ class MunicipalityList(View):
                         ('muaji', 1)])
             }
         ])
-        json = mongo.db.procurements.find_one()
+
         # pergjigjen e kthyer dhe te konvertuar ne JSON ne baze te json_util.dumps() e ruajme ne  resp
         resp = Response(response=json_util.dumps(json),mimetype='application/json')
 
