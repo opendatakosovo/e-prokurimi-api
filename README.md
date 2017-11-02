@@ -119,10 +119,13 @@ company-slug
 ## API calls
 
 
-## GET `/budget-type/<string:komuna>/<int:year>`
-Retriving data 
+## GET `/budget-type/<string:municipality>/<int:year>`
+
+Retrieving JSON data based on the budget type for the given municipality and year.
+
+
 **Required Prams**
- * `string:komuna`
+ * `string:municipality`
  * `int:year`
 
 Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/budget-type/prishtina/2012](http://e-prokurimi.org/api/municipality-procurements/budget-type/prishtina/2016)
@@ -130,10 +133,12 @@ Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/budget-type/
 
 
 
-## GET `/procurement-type/<string:komuna>/<int:year>`
+## GET `/procurement-type/<string:municipality>/<int:year>`
+
+Retrieving JSON data based on the procurement type for the given municipality and year.
 
 **Required Prams**
-* `string:komuna`
+* `string:municipality`
 * `int:year`
 
 Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012](http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012)
@@ -142,16 +147,20 @@ Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/procurement-
 
 
 
-## GET `/<string:komuna>/monthly-summary`
+## GET `/<string:municipality>/monthly-summary`
+
+Retrieving JSON data for number, price and value of the contracts for each month for the given municipality.
 
 **Required Prams**
- * `string:komuna`
+ * `string:municipality`
 
 Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/prishtine/monthly-summary](http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012)
 
 
 
 ## GET `/kompania/<string:company-slug>`
+
+Retrieving JSON data of the company based on the company slug(company-slug). These data describe who contracted this company and the price of the contracts.
 
 * **Required Prams**
 * `string:company-name`
@@ -163,6 +172,8 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania/abc]
 
 ## GET `/kompania-detajet/<string:company-slug>`
 
+Retrieving detailed JSON data about the company based on the company slug(company-slug). These data describe who contracted this company and the price of the contracts.
+
 * **Required Prams**
 ..* `string:company-slug`
 
@@ -172,10 +183,12 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania-deta
 
 
 
-## GET `<string:komuna>/red-flags/<int:viti>`
+## GET `<string:municipality>/red-flags/<int:year>`
+
+Retrieving JSON data based on red flags algorithm for the given municipality and year.
 
 * **Required Prams**
-..* `string:komuna`
+..* `string:municipality`
 ..* `int:year`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012](http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012)
@@ -183,10 +196,10 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/prishtina/red
 
 
 
-## GET `<string:komuna>/treemap/<int:viti>`
+## GET `<string:municipality>/treemap/<int:year>`
 
 **Required Prams**
- * `string:komuna`
+ * `string:municipality`
  * `int:year`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/prishtina/treemap/2012](http://e-prokurimi.org/api/municipality-procurements/prishtina/treemap/2012)
@@ -194,10 +207,12 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/prishtina/tre
 
 
 
-## GET `<string:komuna>/piechart/<int:viti>`
+## GET `<string:municipality>/piechart/<int:year>`
+
+Retrieving JSON data for the total value of contacts based on the procurement type for the given municipality and year.
 
 **Required Prams**
- * `string:komuna`
+ * `string:municipality`
  * `int:year`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/ferizaj/piechart/2012](http://e-prokurimi.org/api/municipality-procurements/ferizaj/piechart/2012)
