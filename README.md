@@ -175,7 +175,7 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania/abc]
 Retrieving detailed JSON data about the company based on the company slug(company-slug). These data describe who contracted this company and the price of the contracts.
 
 * **Required Prams**
-..* `string:company-slug`
+  * `string:company-slug`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc](http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc)
 
