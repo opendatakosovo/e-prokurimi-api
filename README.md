@@ -15,14 +15,17 @@
 
 This is the API of [e-prokurimi](e-prokurimi.org) platform that visualizes procurement data from local municipality and automatically detects irregularities through a contextual and custom built red flagging algorithm.
 
+
 **URL**
 
 [http://e-prokurimi.org/api/municipality-procurements/](http://e-prokurimi.org/api/municipality-procurements/)
+
 
 **Allowed HTTPs requests**
 ```
   GET
 ```
+
 
 **JSON structure**
 
@@ -117,7 +120,7 @@ company-slug
 
 
 ## GET `/budget-type/<string:komuna>/<int:year>`
-
+Retriving data 
 **Required Prams**
  * `string:komuna`
  * `int:year`
@@ -144,20 +147,7 @@ Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/procurement-
 **Required Prams**
  * `string:komuna`
 
-Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/prihstine/monthly-summary](http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012)
-
-
-
-
-
-## GET `/monthly-summary/<int:viti>`
-
-**Required Prams**
- * `string:viti`
-
-Sample Call: [http://e-prokurimi.org/api/municipality-procurements/monthly-summary/2014](http://e-prokurimi.org/api/municipality-procurements/monthly-summary/2014)
-
-
+Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/prishtine/monthly-summary](http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012)
 
 
 
