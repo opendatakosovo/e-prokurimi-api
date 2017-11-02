@@ -113,7 +113,9 @@ Possible options:
 ```
 company-slug
 ```
-
+Example
++ `post-telekomi-i-kosoves`
++ `abc`
 
 
 ## API calls
