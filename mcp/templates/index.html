@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
-    <div class="container">
-
+    <div class="container" class="row col-md-10 col-md-offset-1">
+        <div>
         <h1 id="api">Municipality Procurement API</h1>
 
         <p>This is the API of <a href="e-prokurimi.org">e-prokurimi</a> platform that visualizes procurement data from local municipality and automatically detects irregularities through a contextual and custom built red flagging algorithm.</p>
@@ -76,10 +76,7 @@
         <li>400 <code>Bad Request</code> - the request could not be understood or was missing
         required parameters.</li>
 
-        <li>401 <code>Unauthorized</code> - authentication failed or user doesn't have
-        permissions for requested operation.</li>
-
-        <li>403 <code>Forbidden</code> - access denied.404 Not Found - resource was not found.</li>
+        <li>404 <code>Not Found</code> - resource was not found.</li>
         </ul>
         <hr>
 
@@ -126,6 +123,7 @@
         </ol>
 
         <pre><code>company-slug</code></pre>
+        <p>Example:</p>
         <ul>
             <li> <code>post-telekomi-i-kosoves</code></li>
             <li> <code>abc</code></li>
@@ -143,18 +141,19 @@
         <li><code>string:municipality</code></li>
         <li><code>int:year</code></li>
         </ul>
-        <p>Sample Call:  <a href="http://e-prokurimi.org/api/municipality-procurements/budget-type/prishtina/2016">http://e-prokurimi.org/api/municipality-procurements/budget-type/prishtina/2012</a></p>
+        <p>Sample Call:  <a href="http://e-prokurimi
+        .org/api/municipality-procurements/budget-type/prishtina/2016" target="_blank">http://e-prokurimi.org/api/municipality-procurements/budget-type/prishtina/2012</a></p>
 
         <hr>
-        <h3>GET <code>/procurement-type/&lt;string:municipality&gt;/&lt;
-            int:year&gt;</code></h3>
+        <h3>GET <code>/procurement-type/&lt;string:municipality&gt;/&lt;int:year&gt;</code></h3>
         <p>Retrieving JSON data based on the procurement type for the given municipality and year.</p>
         <p><strong>Required Prams</strong></p>
         <ul>
         <li><code>string:municipality</code></li>
         <li><code>int:year</code></li>
         </ul>
-        <p>Sample Call:  <a href="http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012">http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012</a></p>
+        <p>Sample Call:  <a href="http://e-prokurimi
+        .org/api/municipality-procurements/procurement-type/prishtina/2012" target="_blank">http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012</a></p>
 
         <hr>
         <h3>GET <code>/&lt;string:municipality&gt;/monthly-summary</code></h3>
@@ -163,7 +162,10 @@
         <ul>
         <li><code>string:municipality</code></li>
         </ul>
-        <p>Sample Call:  <a href="http://e-prokurimi.org/api/municipality-procurements/procurement-type/prishtina/2012">http://e-prokurimi.org/api/municipality-procurements/prishtine/monthly-summary</a></p>
+        <p>Sample Call:  <a href="http://e-prokurimi
+        .org/api/municipality-procurements/procurement-type/prishtina/2012"
+                            target="_blank">http://e-prokurimi
+            .org/api/municipality-procurements/prishtine/monthly-summary</a></p>
         <hr>
 
         <h3>GET <code>/kompania/&lt;string:company-slug&gt;</code></h3>
@@ -172,37 +174,40 @@
         <li><strong>Required Prams</strong></li>
         <li><code>string:company-name</code></li>
         </ul>
-        <p>Sample Call: <a href="http://e-prokurimi.org/api/municipality-procurements/kompania/abc">http://e-prokurimi.org/api/municipality-procurements/kompania/abc</a></p>
+        <p>Sample Call: <a href="http://e-prokurimi
+        .org/api/municipality-procurements/kompania/abc" target="_blank">http://e-prokurimi.org/api/municipality-procurements/kompania/abc</a></p>
 
         <hr>
         <h3>GET<code>/kompania-detajet/&lt;string:company-slug&gt;</code></h3>
         <p>Retrieving detailed JSON data about the company based on the company slug(company-slug). These data describe who contracted this company and the price of the contracts.</p>
+        <strong>Required Prams</strong>
         <ul>
-        <li><strong>Required Prams</strong><br>
-        <code>string:company-slug</code></li>
+        <li><code>string:company-slug</code></li>
         </ul>
-        <p>Sample Call: <a href="http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc">http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc</a></p>
+        <p>Sample Call: <a href="http://e-prokurimi
+        .org/api/municipality-procurements/kompania-detajet/abc" target="_blank">http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc</a></p>
 
         <hr>
         <h3>GET <code>&lt;string:municipality&gt;/red-flags/&lt;int:year&gt;
         </code></h3>
         <p>Retrieving JSON data based on red flags algorithm for the given municipality and year.</p>
+        <strong>Required Prams</strong>
         <ul>
-        <li><strong>Required Prams</strong><br>
-        <code>string:municipality</code><br>
-        <code>int:year</code></li>
+        <li><code>string:municipality</code></li>
+        <li><code>int:year</code></li>
         </ul>
-        <p>Sample Call: <a href="http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012">http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012</a></p>
+        <p>Sample Call: <a href="http://e-prokurimi
+        .org/api/municipality-procurements/prishtina/red-flags/2012" target="_blank">http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012</a></p>
         <hr>
 
-        <h3><a></a>GET <code>&lt;string:municipality&gt;/treemap/&lt;
-            int:year&gt;</code></h3>
+        <h3><a></a>GET <code>&lt;string:municipality&gt;/treemap/&lt;int:year&gt;</code></h3>
         <p><strong>Required Prams</strong></p>
         <ul>
         <li><code>string:municipality</code></li>
         <li><code>int:year</code></li>
         </ul>
-        <p>Sample Call: <a href="http://e-prokurimi.org/api/municipality-procurements/prishtina/treemap/2012">http://e-prokurimi.org/api/municipality-procurements/prishtina/treemap/2012</a></p>
+        <p>Sample Call: <a href="http://e-prokurimi
+        .org/api/municipality-procurements/prishtina/treemap/2012" target="_blank">http://e-prokurimi.org/api/municipality-procurements/prishtina/treemap/2012</a></p>
 
         <hr>
         <h3>GET
@@ -214,10 +219,21 @@
         <li><code>string:municipality</code></li>
         <li><code>int:year</code></li>
         </ul>
-        <p>Sample Call: <a href="http://e-prokurimi.org/api/municipality-procurements/ferizaj/piechart/2012">http://e-prokurimi.org/api/municipality-procurements/ferizaj/piechart/2012</a></p>
-        <hr>
+        <p>Sample Call: <a href="http://e-prokurimi
+        .org/api/municipality-procurements/ferizaj/piechart/2012" target="_blank">http://e-prokurimi.org/api/municipality-procurements/ferizaj/piechart/2012</a></p>
+        </div>
 
-
+        <div class="row">
+            <div class="col-lg-12">
+              <hr>
+              <div class="col-md-8">
+                <a target="_blank" href="http://opendatakosovo.org">Developed and Documented by ODK</a>
+              </div>
+              <div class="col-md-4">
+                <p class="muted pull-right">© 2017 <a target="_blank" href="http://opendatakosovo.org">Open Data Kosovo</a>. All rights reserved</p>
+              </div>
+            </div>
+          </div>
     </div>
 </body>
 </html>

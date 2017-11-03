@@ -77,9 +77,7 @@ Sample JSON body structure:
  representation to return (i.e. the response is empty)
   * 400 `Bad Request` - the request could not be understood or was missing 
  required parameters.
-  * 401 `Unauthorized` - authentication failed or user doesn't have 
- permissions for requested operation.
-  * 403 `Forbidden` - access denied.404 Not Found - resource was not found.
+  * 404 `Not Found` - resource was not found.
 
 
 **All URL Params**
@@ -164,7 +162,7 @@ Sample Call:  [http://e-prokurimi.org/api/municipality-procurements/prishtine/mo
 
 Retrieving JSON data of the company based on the company slug(company-slug). These data describe who contracted this company and the price of the contracts.
 
-* **Required Prams**
+**Required Prams**
 * `string:company-name`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania/abc](http://e-prokurimi.org/api/municipality-procurements/kompania/abc)
@@ -176,7 +174,7 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania/abc]
 
 Retrieving detailed JSON data about the company based on the company slug(company-slug). These data describe who contracted this company and the price of the contracts.
 
-* **Required Prams**
+**Required Prams**
   * `string:company-slug`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc](http://e-prokurimi.org/api/municipality-procurements/kompania-detajet/abc)
@@ -189,9 +187,9 @@ Sample Call: [http://e-prokurimi.org/api/municipality-procurements/kompania-deta
 
 Retrieving JSON data based on red flags algorithm for the given municipality and year.
 
-* **Required Prams**
-..* `string:municipality`
-..* `int:year`
+**Required Prams**
+ * `string:municipality`
+ * `int:year`
 
 Sample Call: [http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012](http://e-prokurimi.org/api/municipality-procurements/prishtina/red-flags/2012)
 
